@@ -1,0 +1,81 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success btn-space"
+            [disabled]="!serviceForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="serviceType">Service type</label>
+            <select class="form-control" id="serviceType" formControlName="serviceType">
+              <option *ngFor="let type of serviceTypes" [ngValue]="type">{{ type }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" formArrayName="stations">
+          <div
+            class="row"
+            *ngFor="let stationCtrl of serviceForm.get('stations').controls; let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px;">
+            <div class="col-xs-8">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="name"
+                readonly>
+            </div>
+            <div class="col-xs-2">
+              <button
+                type="button"
+                class="btn btn-danger fa fa-trash-o"
+                (click)="onDeleteStation(i)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        <label>Type station name:
+          <input list="chooseStations" name="stationList" [(ngModel)]="newStationName" #newStation></label>
+        <datalist id="chooseStations">
+          <option *ngFor="let item of stationList" [value]="item.name">
+        </datalist>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="onAddStation(newStation.value)">Add Station</button>
+      </div>
+    </div>
+  </div>
+</div>

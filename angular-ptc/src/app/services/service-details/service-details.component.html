@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ serviceWithStationsModel.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-primary btn-space" (click)="onEdit()">Edit Service</button>
+    <button class="btn btn-danger btn-space" (click)="onDelete()">Delete Service</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Stations:</h2>
+    <ol class="list-group">
+      <li *ngFor="let item of serviceWithStationsModel.stations">
+        {{ item.name }}
+      </li>
+    </ol>
+  </div>
+</div>
+
+

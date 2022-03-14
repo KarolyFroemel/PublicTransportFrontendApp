@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success btn-space" (click)="onNewTicket()">Purchase New Ticket</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="ticketSearchForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="ticketType">Ticket type</label>
+            <select class="form-control" id="ticketType" formControlName="ticketType" #ticketType>
+              <option *ngFor="let type of ticketTypes" [ngValue]="type.name">{{ type.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="ticketStatus">Ticket status</label>
+            <select class="form-control" id="ticketStatus" formControlName="ticketStatus" #ticketStatusType>
+              <option *ngFor="let type of ticketStatusTypes" [ngValue]="type">{{ type }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success btn-space">Search
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Tickets</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <app-user-ticket-item
+      *ngFor="let userTicketItem of userTicketList"
+      [item]="userTicketItem"
+      [index]="userTicketItem.id"></app-user-ticket-item>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <br>
+    <button type="button" class="btn btn-success btn-space" (click)="previousPage()" [disabled]="xPage == 0">Prev</button>
+    <label class="btn-space">Page {{xTotalPages == 0 ? 0 : xPage+1}} / {{xTotalPages}}</label>
+    <button type="button" class="btn btn-success" (click)="nextPage()" [disabled]="xPage + 1 >= xTotalPages">Next</button>
+  </div>
+</div>
+

@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success btn-space" (click)="onNewService()">New Service</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="serviceSearchForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="serviceType">Service type</label>
+            <select class="form-control" id="serviceType" formControlName="serviceType" #selectServiceType>
+              <option *ngFor="let type of serviceTypes" [ngValue]="type">{{ type }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            type="submit"
+            class="btn btn-success btn-space">Search
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Services</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <app-service-item
+      *ngFor="let item of services"
+      [item]="item"
+      [index]="item.id"></app-service-item>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <br>
+    <button type="button" class="btn btn-success btn-space" (click)="previousPage()" [disabled]="xPage == 0">Prev</button>
+    <label class="btn-space">Page {{xTotalPages == 0 ? 0 : xPage+1}} / {{xTotalPages}}</label>
+    <button type="button" class="btn btn-success" (click)="nextPage()" [disabled]="xPage + 1 >= xTotalPages">Next</button>
+
+  </div>
+</div>

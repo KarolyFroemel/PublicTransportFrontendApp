@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Purchase new ticket.</h1>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="ticketPurchaseForm" (ngSubmit)="onSubmit(ticketType.selectedIndex)">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="ticketType">Ticket type</label>
+            <select class="form-control" id="ticketType" formControlName="ticketType" #ticketType (change)="onChange(ticketType.selectedIndex)">
+              <option *ngFor="let type of ticketTypes" [ngValue]="type.name">{{ type.name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              type="text"
+              id="description"
+              class="form-control"
+              formControlName="description"
+              rows="6"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="validFrom">Valid from</label>
+            <input type="date"
+                   placeholder="yyyy-MM-dd"
+                   class="form-control"
+                   id="validFrom"
+                   formControlName="validFrom"
+                   min="{{currentDate | date:'yyyy-MM-dd'}}" placeholder="Date"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button
+            [disabled]="!ticketPurchaseForm.valid"
+            type="submit"
+            class="btn btn-success btn-space">Purchase
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

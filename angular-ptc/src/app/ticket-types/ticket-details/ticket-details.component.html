@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img
+      [src]="ticket.imgSource"
+      alt="{{ ticket.name }}"
+      class="img-responsive"
+      style="max-height: 300px;">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ ticket.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+      <button class="btn btn-primary btn-space" (click)="onEdit()">Edit Ticket</button>
+      <button class="btn btn-danger btn-space" (click)="onDelete()">Delete Ticket</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>{{ ticket.description }}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Ticket price: {{ ticket.price }}$</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>The ticket can be used: {{ ticket.expirationTime }} day(s) after purchase.</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>The ticket is {{ ticket.isEnforceable ? 'enforceable' : 'not enforceable' }}.</h5>
+  </div>
+</div>
+

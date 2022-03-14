@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xs-12">
+    <img
+      [src]="img"
+      alt="{{ userInfo.name }}"
+      class="img-responsive"
+      style="max-height: 300px;">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ userInfo.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>User email: {{ userInfo.email }}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>User balance: {{ userInfo.account.balance }}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-primary btn-space" (click)="onFillBalance()">Fill Balance</button>
+  </div>
+</div>
+<div class="row" *ngIf="isFillBalanceEnable">
+  <form [formGroup]="fillBalanceForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-xs-3">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            id="amount"
+            formControlName="amount"
+            class="form-control">
+          <span class="alert" *ngIf="!fillBalanceForm.valid">Min value is 1 and max value is 1000000</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <button
+          type="submit"
+          class="btn btn-success btn-space" [disabled]="!fillBalanceForm.valid">Submit
+        </button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

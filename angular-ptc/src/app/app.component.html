@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div class="alert alert-danger" *ngIf="error">
+<h1>An Error Occurred!</h1>
+  <h5> html status code:: {{ error.errorCode }}</h5>
+  <h5> code: {{ error.errorCode }}</h5>
+  <h5> message: {{ error.errorMessage }}</h5>
+  <h5> detailedMessage: {{ error.errorDetailedMessage }}</h5>
+  <button class="btn alert-danger" (click)="onOkError()">OK</button>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

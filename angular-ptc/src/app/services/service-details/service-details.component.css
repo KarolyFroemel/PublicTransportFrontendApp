@@ -1,0 +1,21 @@
+.btn-space {
+  margin-right: 5px;
+}
+
+
+ol li {
+  list-style-type: none;
+  counter-increment: item;
+}
+
+ol li:before {
+  content: counter(item);
+  margin-right: 5px;
+  font-size: 80%;
+  background-color: #f9dd94;
+  color: #7eb4e2;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+

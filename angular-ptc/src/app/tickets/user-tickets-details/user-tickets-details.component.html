@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ ticket.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <img
+      [src]="ticket.imgSource"
+      alt="{{ ticket.name }}"
+      class="img-responsive"
+      style="max-height: 300px;">
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button [disabled]="!isValidationEnable" class="btn btn-success btn-space" (click)="onValidate()">Validate Ticket</button>
+    <button [disabled]="!isRefundationEnable" class="btn btn-danger btn-space" (click)="onRefund()">Refund Ticket</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Ticket number: {{ ticket.id }}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Ticket status: {{ statusMap.get(ticket.status) }}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Purchase time: {{ ticket.purchaseDate }}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Ticket valid from: {{ ticket.validFrom }}</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Ticket valid to: {{ ticket.validTo }}</h5>
+  </div>
+</div>
+<div class="row" *ngIf="ticket.status == 'VALIDATED'">
+  <div class="col-xs-12">
+    <h5>Ticket validation time: {{ ticket.validationTime }}</h5>
+  </div>
+</div>
